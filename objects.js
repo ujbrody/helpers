@@ -24,6 +24,18 @@ class StringBuilder {
         }
     }
 
+    prepend(value){
+        if (typeof value === typeof ""){
+            this.parts.unshift(value);
+        }
+    }
+
+    prependAnything(value){
+        if (value) {
+            this.parts.unshift(value.toString());
+        }
+    }
+
     clear(){
         this.parts = [];
     }
