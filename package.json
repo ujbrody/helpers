@@ -1,0 +1,15 @@
+{
+  "name": "helpers",
+  "version": "1.0.0",
+  "description": "Helper functions for different small tasks within an application",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/*/*.js"
+  },
+  "author": "Uri Brodetzki",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}
