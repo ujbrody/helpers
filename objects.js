@@ -40,6 +40,10 @@ class StringBuilder {
         this.parts = [];
     }
 
+    isEmpty(){
+        return this.parts.length === 0;
+    }
+
     toWords(divider){
         if (typeof divider === typeof ""){
             return this.parts.join(divider);
