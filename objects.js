@@ -2,19 +2,35 @@
 
 class StringBuilder {
 
-    constructor(value, flex){
+    constructor(){
         this.parts = new Array();
 
-        if (flex === true){
-            this.appendAnything(value);
-        }else{
-            this.append(value);
+        let flex = false;
+
+        if (arguments.length > 0){
+            let length = arguments.length;
+            if (typeof arguments[arguments.length -1] === typeof true){
+                flex = arguments[arguments.length - 1];
+                length = length - 1;
+            }
+
+            for (let i = 0; i < length; i++){
+                if (flex === true){
+                    this.appendAnything(arguments[i]);
+                } else {
+                    this.append(arguments[i]);
+                }
+            }
         }
     }
     
     append(value){
         if (typeof value === typeof ""){
             this.parts.push(value);
+        }
+
+        if (value instanceof StringBuilder){
+            this.parts = this.parts.concat(value.parts);
         }
 
         return this;
@@ -31,6 +47,10 @@ class StringBuilder {
     prepend(value){
         if (typeof value === typeof ""){
             this.parts.unshift(value);
+        }
+
+        if (value instanceof StringBuilder){
+            this.parts = value.parts.concat(this.parts);
         }
 
         return this;
