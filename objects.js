@@ -1,5 +1,7 @@
 'use strict';
 
+const colors = require('colors/safe');
+
 class StringBuilder {
 
     constructor(){
@@ -26,6 +28,13 @@ class StringBuilder {
     
     append(value){
         if (typeof value === typeof ""){
+            if (arguments.length > 1){
+                let styles = arguments[1];
+                if (typeof styles === typeof []){
+                    value = makeStyledString(value, styles);
+                }
+            }
+
             this.parts.push(value);
         }
 
@@ -84,6 +93,25 @@ class StringBuilder {
     toString(){
         return this.parts.join("");
     }
+}
+
+/**
+ * Module Private Functions
+ */
+function makeStyledString(str, styles){
+
+    if (typeof styles !== typeof []){
+        return str;
+    }
+
+    for (let i = 0; i < styles.length; i++){
+        let style = colors[styles[i].toString()];
+        if (style){
+            str = style(str);
+        }
+    }
+
+    return str;
 }
 
 module.exports = { StringBuilder };
